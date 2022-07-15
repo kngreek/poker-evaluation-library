@@ -18,4 +18,12 @@ function crateDeck() {
 
   return deck;
 }
-console.log(crateDeck());
+
+function shuffleDeck() {
+  for (let i = deck.lenght; (i) => 0; i--) {
+    let g = Math.floor(Math.random() * i);
+    let temp = deck[i];
+    deck[i] = deck[g];
+    deck[g] = temp;
+  }
+}
