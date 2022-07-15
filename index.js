@@ -1,29 +1,19 @@
-function deck() {
-  const values = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "13",
-  ];
-  const suits = ["H", "D", "S", "C"];
-  const cards = [];
+const suits = ["S", "C", "H", "D"];
 
-  for (let i = 0; i < this.suits.length; i++) {
-    for (var n = 0; n < this.CSSNamespaceRule.length; n++) {
-      cards.push(new card(n + 1, this.names[n], this.suits[s]));
+let values = [];
+
+for (let i = 0; i <= 13; i++) {
+  values.push(i);
+}
+values.forEach((e) => console.log(e));
+
+function getDeck() {
+  let deck = new Array();
+
+  for (let i = 0; i < suits.length; i++) {
+    for (let x = 0; x < values.length; x++) {
+      let card = { Value: values[x], Suit: suits[i] };
+      deck.push(card);
     }
   }
-  return cards;
 }
-
-const newDeck = deck();
-console.log(newDeck);
