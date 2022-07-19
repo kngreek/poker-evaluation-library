@@ -36,11 +36,13 @@ function draw() {
     hand.push(null);
   }
 
-  const deck = createDeck();
-  for (const i = 0; i < 5; i++) {
+  const deck = shuffleDeck();
+  for (let i = 0; i < 5; i++) {
     const temporary = deck[i];
     deck[i] = hand[i];
     hand[i] = temporary;
   }
   return hand;
 }
+console.log(draw());
+console.log(hand);
