@@ -29,7 +29,18 @@ function shuffleDeck() {
   }
   return deck;
 }
+function draw() {
+  let hand = [];
 
-console.log(shuffleDeck());
+  for (let i = 1; i <= 5; i++) {
+    hand.push(null);
+  }
 
-function draw(deck) {}
+  const deck = createDeck();
+  for (const i = 0; i < 5; i++) {
+    const temporary = deck[i];
+    deck[i] = hand[i];
+    hand[i] = temporary;
+  }
+  return hand;
+}
