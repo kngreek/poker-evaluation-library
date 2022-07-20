@@ -42,6 +42,24 @@ function draw(shuffledDeck) {
   shuffledDeck.splice(0, 5);
   return hand;
 }
+const hand = draw(shuffledDeck);
 console.log(shuffledDeck);
 console.log(draw(shuffledDeck));
 console.log(shuffledDeck);
+function numberPower(hand) {
+  numberOfHand = [];
+  for (i = 0; i < 5; i++) {
+    numberOfHand[i] = hand[i].replace(/\D/g, "");
+  }
+  return numberOfHand;
+}
+console.log(numberPower(hand));
+
+function suitPower(hand) {
+  suitsOfHand = [];
+  for (i = 0; i < 5; i++) {
+    suitsOfHand[i] = hand[i].replace(/[0-9]/g, "");
+  }
+  return suitsOfHand;
+}
+console.log(suitPower(hand));
