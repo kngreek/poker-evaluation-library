@@ -1,6 +1,6 @@
 const suits = ["S", "C", "H", "D"];
 
-let values = [];
+const values = [];
 
 for (let i = 1; i <= 13; i++) {
   values.push(i);
@@ -18,10 +18,10 @@ function createDeck() {
 
   return deck;
 }
+const deck = createDeck();
 
-function shuffleDeck() {
-  const deck = createDeck();
-  for (let i = deck.length; i > 0; i--) {
+function shuffleDeck(deck) {
+  for (let i = deck.length - 1; i > 0; i--) {
     const g = Math.floor(Math.random() * i);
     const t = deck[i];
     deck[i] = deck[g];
@@ -29,20 +29,19 @@ function shuffleDeck() {
   }
   return deck;
 }
-function draw() {
+const shuffledDeck = shuffleDeck(deck);
+
+function draw(shuffledDeck) {
   let hand = [];
-
-  for (let i = 1; i <= 5; i++) {
-    hand.push(null);
-  }
-
-  const deck = shuffleDeck();
   for (let i = 0; i < 5; i++) {
     const temporary = deck[i];
     deck[i] = hand[i];
     hand[i] = temporary;
   }
+
+  shuffledDeck.splice(0, 5);
   return hand;
 }
-console.log(draw());
-console.log(hand);
+console.log(shuffledDeck);
+console.log(draw(shuffledDeck));
+console.log(shuffledDeck);
