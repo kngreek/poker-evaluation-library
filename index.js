@@ -48,7 +48,7 @@ console.log(draw(shuffledDeck));
 console.log(shuffledDeck);
 function numberHand(hand) {
   const numberOfHand = [];
-  for (i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     numberOfHand[i] = hand[i].replace(/\D/g, "");
   }
   return numberOfHand;
@@ -58,7 +58,7 @@ console.log(numberHand(hand));
 
 function suitHand(hand) {
   const suitsOfHand = [];
-  for (i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     suitsOfHand[i] = hand[i].replace(/[0-9]/g, "");
   }
   return suitsOfHand;
@@ -68,7 +68,7 @@ console.log(suitHand(hand));
 
 let power = 0;
 function highCard(numberHand, power) {
-  for (i = 0; i < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     if (numberHand[i] > 10) {
       power = 1;
     }
@@ -77,12 +77,12 @@ function highCard(numberHand, power) {
 }
 console.log(highCard(numberHand, power));
 
-function pair(numberHand) {
-  const count = {};
+//function pair(numberHand) {
+//const count = {};
 
-  numberHand.forEach((element) => {
-    count[element] = (count[element] || 0) + 1;
-  });
-  return count;
-}
-console.log(pair(numberHand));
+// numberHand.forEach((element) => {
+//  count[element] = (count[element] || 0) + 1;
+// });
+// return count;
+//}
+//console.log(pair(numberHand));
