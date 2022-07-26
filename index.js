@@ -1,8 +1,8 @@
-const suits = ["S", "C", "H", "D"]; // as it is constant a good conversion would be CONST SUITS = ["S", "C", "H", "D"];
+const suits = ["S", "C", "H", "D"]; // NOTE: as it is constant a good conversion would be CONST SUITS = ["S", "C", "H", "D"];
 
 const values = [];
 
-// make this a funtion that creates the values array and it returns them at values initialization
+// NOTE: make this a funtion that creates the values array and it returns them at values initialization
 for (let i = 1; i <= 13; i++) {
   values.push(i);
 }
@@ -23,7 +23,7 @@ function createDeck() {
 const deck = createDeck();
 console.log(deck);
 
-// To avoid mutation it is a good practice to copy you input (deck) and create a new one shuffled and store it in a new varuable (eg. shuffledDeck)
+// NOTE: To avoid mutation it is a good practice to copy you input (deck) and create a new one shuffled and store it in a new varuable (eg. shuffledDeck)
 function shuffleDeck(deck) {
   for (let i = deck.length - 1; i > 0; i--) {
     const g = Math.floor(Math.random() * i);
@@ -69,7 +69,7 @@ function split(hand) {
 }
 console.log(split(hand));
 
-// Always remove commented out code because it is stored in git history
+// NOTE: Always remove commented out code because it is stored in git history
 
 /*
 function numberHand(hand) {
