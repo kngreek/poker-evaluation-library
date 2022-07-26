@@ -12,6 +12,7 @@ function createDeck() {
     for (let v = 0; v < values.length; v++) {
       const value = values[v];
       const suit = suits[s];
+
       deck.push(value + suit);
     }
   }
@@ -19,6 +20,7 @@ function createDeck() {
   return deck;
 }
 const deck = createDeck();
+console.log(deck);
 
 function shuffleDeck(deck) {
   for (let i = deck.length - 1; i > 0; i--) {
@@ -39,15 +41,34 @@ function draw(shuffledDeck) {
     hand[i] = temporary;
   }
 
-  shuffledDeck.splice(0, 5);
+  shuffledDeck = shuffledDeck.splice(0, 5);
   return hand;
 }
+console.log("shuffledDeck", shuffledDeck);
 const hand = draw(shuffledDeck);
-console.log(shuffledDeck);
-console.log(draw(shuffledDeck));
-console.log(shuffledDeck);
+console.log("shuffledDeck2", shuffledDeck);
+console.log("hand", hand);
+
+function split(hand) {
+  numberHand = [];
+  suitHand = [];
+
+  for (i = 0; i < hand.length; i++) {
+    if ((hand[i].length = 3)) {
+      numberHand[i] = hand[i].slice(0, 1);
+      suitHand[i] = hand[i].slice(1);
+    } else {
+      numberhand[i] = hand[i].slice(0, 1);
+      suitHand[i] = hand[i].slice(1);
+    }
+  }
+  return { numberHand, suitHand };
+}
+console.log(split(hand));
+
+/*
 function numberHand(hand) {
-  const numberOfHand = [];
+  let numberOfHand = [];
   for (let i = 0; i < 5; i++) {
     numberOfHand[i] = hand[i].replace(/\D/g, "");
   }
@@ -57,7 +78,7 @@ const numberOfHand = numberHand(hand);
 console.log(numberHand(hand));
 
 function suitHand(hand) {
-  const suitsOfHand = [];
+  let suitsOfHand = [];
   for (let i = 0; i < 5; i++) {
     suitsOfHand[i] = hand[i].replace(/[0-9]/g, "");
   }
@@ -76,6 +97,10 @@ function highCard(numberHand, power) {
   return power;
 }
 console.log(highCard(numberHand, power));
+
+
+
+*/
 
 //function pair(numberHand) {
 //const count = {};
