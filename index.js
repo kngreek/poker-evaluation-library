@@ -48,9 +48,6 @@ function draw(shuffledDeck) {
 const hand = draw(shuffledDeck);
 const hand2 = draw(shuffledDeck);
 
-console.log("hand", hand);
-console.log("hand2", hand2);
-
 function getHandResult(hand, power) {
   numberHand = [];
 
@@ -143,8 +140,6 @@ function getHandResult(hand, power) {
 }
 let result1 = getHandResult(hand, power);
 let result2 = getHandResult(hand2, power);
-console.log(result1);
-console.log(result2);
 
 const getHandNameFromPower = (power) => {
   const HAND_NAMES = {
@@ -160,24 +155,28 @@ const getHandNameFromPower = (power) => {
   };
   return HAND_NAMES[power];
 };
-
+const finalResult = "";
 function getResultSentence(name, handName) {
   return `${name} is the winner with '${handName}'`;
 }
+
 if (result1.power > result2.power) {
-  console.log(getResultSentence("Hand 1", getHandNameFromPower(result1.power)));
+  finalResult ===
+    getResultSentence("Hand 1", getHandNameFromPower(result1.power));
 } else if (result1.power < result2.power) {
-  console.log(getResultSentence("Hand 2", getHandNameFromPower(result2.power)));
+  finalResult ===
+    getResultSentence("Hand 2", getHandNameFromPower(result2.power));
 } else if (
   result1.power != 0 &&
   result1.power != 0 &&
   result1.power === result2.power
 ) {
-  console.log("Its a tie !");
+  finalResult === "Its a tie !";
 } else if (result1.power === 0 && result2.power === 0) {
   if (result1.highCard > result2.highCard) {
-    console.log("Hand 1 is the winner with a high card");
+    finalResult === "Hand 1 is the winner with a high card";
   } else if (result1.highCard < result2.highCard) {
-    console.log("Hand 2 is the winner with a high card");
+    finalResult === "Hand 2 is the winner with a high card";
   }
+  return finalResult;
 }
