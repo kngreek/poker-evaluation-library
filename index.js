@@ -1,6 +1,7 @@
 const suits = ["S", "C", "H", "D"];
 
 const values = [];
+let power = 0;
 
 for (let i = 1; i <= 13; i++) {
   values.push(i);
@@ -12,7 +13,8 @@ function createDeck() {
     for (let v = 0; v < values.length; v++) {
       const value = values[v];
       const suit = suits[s];
-      deck.push(value + suit);
+
+      deck.push(suit + value);
     }
   }
 
@@ -39,50 +41,142 @@ function draw(shuffledDeck) {
     hand[i] = temporary;
   }
 
-  shuffledDeck.splice(0, 5);
+  shuffledDeck = shuffledDeck.splice(0, 5);
   return hand;
 }
+
 const hand = draw(shuffledDeck);
-console.log(shuffledDeck);
-console.log(draw(shuffledDeck));
-console.log(shuffledDeck);
-function numberHand(hand) {
-  const numberOfHand = [];
-  for (let i = 0; i < 5; i++) {
-    numberOfHand[i] = hand[i].replace(/\D/g, "");
-  }
-  return numberOfHand;
-}
-const numberOfHand = numberHand(hand);
-console.log(numberHand(hand));
+const hand2 = draw(shuffledDeck);
 
-function suitHand(hand) {
-  const suitsOfHand = [];
-  for (let i = 0; i < 5; i++) {
-    suitsOfHand[i] = hand[i].replace(/[0-9]/g, "");
-  }
-  return suitsOfHand;
-}
-const suitsOfHand = suitHand(hand);
-console.log(suitHand(hand));
+function getHandResult(hand, power) {
+  numberHand = [];
 
-let power = 0;
-function highCard(numberHand, power) {
-  for (let i = 0; i < 5; i++) {
-    if (numberHand[i] > 10) {
-      power = 1;
+  for (let i = 0; i < hand.length; i++) {
+    if ((hand[i].length = 3)) {
+      numberHand[i] = hand[i].slice(0, 1);
+    } else {
+      numberhand[i] = hand[i].slice(0, 1);
     }
   }
-  return power;
+  const Suits = numberHand;
+  suitHand = [];
+
+  for (let i = 0; i < hand.length; i++) {
+    if ((hand[i].length = 3)) {
+      suitHand[i] = hand[i].slice(1);
+    } else {
+      suitHand[i] = hand[i].slice(1);
+    }
+  }
+  const Numbers = suitHand;
+  const groups = [];
+  for (let i = 0; i <= 13; i++) {
+    groups[i] = 0;
+  }
+  for (let i = 0; i < Numbers.length; i++) {
+    groups[Numbers[i]]++;
+  }
+  const pairs = groups.filter((group) => group === 2);
+  const three = groups.filter((group) => group === 3);
+  power = 0;
+
+  if (pairs.length === 2) {
+    power = 3;
+  } else if (pairs.length === 1) {
+    power = 2;
+  }
+
+  if (three.length === 1) {
+    if (groups.includes(2)) {
+      power = 7;
+    } else power = 4;
+  }
+  if (groups.includes(4)) {
+    power = 8;
+  }
+  if (power <= 6) {
+    const powerSuit = 0;
+    const groupS = Suits.filter((group) => group === "S");
+    const groupC = Suits.filter((group) => group === "C");
+    const groupH = Suits.filter((group) => group === "H");
+    const groupD = Suits.filter((group) => group === "D");
+
+    if (groupS.length === 5) {
+      power = 6;
+    } else if (groupC.length === 5) {
+      power = 6;
+    } else if (groupH.length === 5) {
+      power = 6;
+    } else if (groupD.length === 5) {
+      power = 6;
+    } else {
+      power = power;
+    }
+  }
+  Numbers.sort(function (a, b) {
+    return a - b;
+  });
+  let consecutive = true;
+  for (let i = 1; i < Numbers.length; i++) {
+    const areConsecutive = Numbers[i] === Numbers[i - 1] + 1;
+    if (!areConsecutive) {
+      consecutive = false;
+    }
+  }
+  if (power === 0 && consecutive === true) {
+    power = 5;
+  } else if (power === 6 && consecutive === true) {
+    power = 9;
+  }
+  if (power === 9 && Numbers[0] === 9) {
+    power = 10;
+  } else {
+    power = power;
+  }
+
+  let result = { highCard: Numbers[4], power: power };
+
+  return result;
 }
-console.log(highCard(numberHand, power));
+let result1 = getHandResult(hand, power);
+let result2 = getHandResult(hand2, power);
 
-//function pair(numberHand) {
-//const count = {};
+const getHandNameFromPower = (power) => {
+  const HAND_NAMES = {
+    2: "pair",
+    3: "two pairs",
+    4: "three of a kind",
+    5: "straight",
+    6: "flush",
+    7: "full house",
+    8: "four of a kind",
+    9: "straight flush",
+    10: "royal flush",
+  };
+  return HAND_NAMES[power];
+};
+const finalResult = "";
+function getResultSentence(name, handName) {
+  return `${name} is the winner with '${handName}'`;
+}
 
-// numberHand.forEach((element) => {
-//  count[element] = (count[element] || 0) + 1;
-// });
-// return count;
-//}
-//console.log(pair(numberHand));
+if (result1.power > result2.power) {
+  finalResult ===
+    getResultSentence("Hand 1", getHandNameFromPower(result1.power));
+} else if (result1.power < result2.power) {
+  finalResult ===
+    getResultSentence("Hand 2", getHandNameFromPower(result2.power));
+} else if (
+  result1.power != 0 &&
+  result1.power != 0 &&
+  result1.power === result2.power
+) {
+  finalResult === "Its a tie !";
+} else if (result1.power === 0 && result2.power === 0) {
+  if (result1.highCard > result2.highCard) {
+    finalResult === "Hand 1 is the winner with a high card";
+  } else if (result1.highCard < result2.highCard) {
+    finalResult === "Hand 2 is the winner with a high card";
+  }
+  return finalResult;
+}
