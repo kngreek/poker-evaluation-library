@@ -1,21 +1,24 @@
 {
-    "name": "poker-evaluation-library",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "start" : "node index"
-     
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/kngreek/poker-evaluation-library.git"
-    },
-    "keywords": [],
-    "author": "Oikonomakos Kwnstantinos",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/kngreek/poker-evaluation-library/issues"
-    },
-    "homepage": "https://github.com/kngreek/poker-evaluation-library#readme"
+  "name": "poker-evaluation-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kngreek/poker-evaluation-library.git"
+  },
+  "keywords": [],
+  "author": "Oikonomakos Kwnstantinos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kngreek/poker-evaluation-library/issues"
+  },
+  "homepage": "https://github.com/kngreek/poker-evaluation-library#readme",
+  "devDependencies": {
+    "jest": "^29.0.3"
   }
+}

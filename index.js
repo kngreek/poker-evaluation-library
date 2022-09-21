@@ -40,7 +40,7 @@ function draw(shuffledDeck) {
     deck[i] = hand[i];
     hand[i] = temporary;
   }
-
+  // Mutation to something outside of your scope
   shuffledDeck = shuffledDeck.splice(0, 5);
   return hand;
 }
@@ -49,6 +49,7 @@ const hand = draw(shuffledDeck);
 const hand2 = draw(shuffledDeck);
 
 function getHandResult(hand, power) {
+  // Declare it with const or let
   numberHand = [];
 
   for (let i = 0; i < hand.length; i++) {
@@ -68,6 +69,7 @@ function getHandResult(hand, power) {
       suitHand[i] = hand[i].slice(1);
     }
   }
+  // Why caps?
   const Numbers = suitHand;
   const groups = [];
   for (let i = 0; i <= 13; i++) {
@@ -180,3 +182,5 @@ if (result1.power > result2.power) {
   }
   return finalResult;
 }
+
+export { getHandResult };
