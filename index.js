@@ -50,7 +50,7 @@ const hand2 = draw(shuffledDeck);
 
 function getHandResult(hand, power) {
   // Declare it with const or let
-  numberHand = [];
+  const numberHand = [];
 
   for (let i = 0; i < hand.length; i++) {
     if ((hand[i].length = 3)) {
@@ -180,7 +180,7 @@ if (result1.power > result2.power) {
   } else if (result1.highCard < result2.highCard) {
     finalResult === "Hand 2 is the winner with a high card";
   }
-  return finalResult;
+  //return finalResult;
 }
 
-export { getHandResult };
+module.exports = { getHandResult };
