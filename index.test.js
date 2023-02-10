@@ -15,7 +15,7 @@ const HAND_TYPE = Object.freeze({
 
 describe("Power", () => {
   it('should return "Royal Flush" related result and 14 as highCard', () => {
-    // GIVEN
+    // GIVEN 
     const hand = ["H14", "H12", "H10", "H13", "H11"];
 
     // WHEN

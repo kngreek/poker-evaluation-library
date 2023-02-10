@@ -40,7 +40,7 @@ function draw(shuffledDeck) {
     deck[i] = hand[i];
     hand[i] = temporary;
   }
-  // Mutation to something outside of your scope
+  
   shuffledDeck = shuffledDeck.splice(0, 5);
   return hand;
 }
@@ -48,39 +48,68 @@ function draw(shuffledDeck) {
 const hand = draw(shuffledDeck);
 const hand2 = draw(shuffledDeck);
 
-function getHandResult(hand, power) {
-  // Declare it with const or let
+function isStraight(hand) {
+  const numberHand = []; //ftiaxnei array
+
+  for (let i = 0; i < hand.length; i++) {
+    numberHand[i] = hand[i].slice(0, 1); //xwrizei ari8moyw apo noymera
+  }
+  const Suits = numberHand;
+  console.log(numberHand);
+  const suitHand = [];
+
+  for (let i = 0; i < hand.length; i++) {
+    suitHand[i] = hand[i].slice(1);
+  }
+  console.log("e", suitHand);//kai ayto xwrizei ari8moyw apo noymera
+
+  const numbers = suitHand;//krataw toy ari8moys
+
+  numbers.sort(function (a, b) {//toys kanw sort
+    return a - b;
+  });
+  console.log(numbers);
+  let consecutive = false;//setarw false ws basic apanthsh opote na allaksei mono an isxyei to parakatw 
+  for (let i = 0; i < numbers.length - 1; i++) {//elegxei an einai consecutive
+    if (numbers[i + 1] - numbers[i] === 1) {
+      return true;
+    }
+  }
+
+  return consecutive;
+}
+
+
+function getHandResult(hand, power, consecutive) {
   const numberHand = [];
 
   for (let i = 0; i < hand.length; i++) {
-    if ((hand[i].length = 3)) {
-      numberHand[i] = hand[i].slice(0, 1);
-    } else {
-      numberhand[i] = hand[i].slice(0, 1);
-    }
+    numberHand[i] = hand[i].slice(0, 1);
   }
   const Suits = numberHand;
-  suitHand = [];
+
+  const suitHand = [];
 
   for (let i = 0; i < hand.length; i++) {
-    if ((hand[i].length = 3)) {
-      suitHand[i] = hand[i].slice(1);
-    } else {
-      suitHand[i] = hand[i].slice(1);
-    }
+    suitHand[i] = hand[i].slice(1);
   }
-  // Why caps?
-  const Numbers = suitHand;
+
+  const numbers = suitHand;
+
+  numbers.sort(function (a, b) {
+    return a - b;
+  });
+
   const groups = [];
   for (let i = 0; i <= 13; i++) {
     groups[i] = 0;
   }
-  for (let i = 0; i < Numbers.length; i++) {
-    groups[Numbers[i]]++;
+  for (let i = 0; i < numbers.length; i++) {
+    groups[numbers[i]]++;
   }
   const pairs = groups.filter((group) => group === 2);
   const three = groups.filter((group) => group === 3);
-  power = 0;
+  power = 1;
 
   if (pairs.length === 2) {
     power = 3;
@@ -115,28 +144,19 @@ function getHandResult(hand, power) {
       power = power;
     }
   }
-  Numbers.sort(function (a, b) {
-    return a - b;
-  });
-  let consecutive = true;
-  for (let i = 1; i < Numbers.length; i++) {
-    const areConsecutive = Numbers[i] === Numbers[i - 1] + 1;
-    if (!areConsecutive) {
-      consecutive = false;
-    }
-  }
-  if (power === 0 && consecutive === true) {
+
+  if (power <= 1 && consecutive === true) {
     power = 5;
   } else if (power === 6 && consecutive === true) {
     power = 9;
   }
-  if (power === 9 && Numbers[0] === 9) {
+  if (power === 9 && numbers[0] === 9) {
     power = 10;
   } else {
     power = power;
   }
 
-  let result = { highCard: Numbers[4], power: power };
+  let result = { highCard: parseInt(numbers[4]), power: power };
 
   return result;
 }
@@ -174,7 +194,7 @@ if (result1.power > result2.power) {
   result1.power === result2.power
 ) {
   finalResult === "Its a tie !";
-} else if (result1.power === 0 && result2.power === 0) {
+} else if (result1.power === 1 && result2.power === 1) {
   if (result1.highCard > result2.highCard) {
     finalResult === "Hand 1 is the winner with a high card";
   } else if (result1.highCard < result2.highCard) {
