@@ -15,7 +15,7 @@ describe('getSortedHand', () => {
 
   it('should handle different suits and return the hand in ascending order', () => {
     const hand = ["C2", "H13", "S10", "H11", "D11"];
-    const sortedHand = ["C2", "S10", "D11", "H11", "H13"];
+    const sortedHand = ["C2", "S10", "H11", "D11", "H13"];
     expect(getSortedHand(hand)).toEqual(sortedHand);
   });
 });

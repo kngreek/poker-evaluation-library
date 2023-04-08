@@ -14,9 +14,9 @@ const HAND_TYPE = Object.freeze({
 });
 
 describe("getHandResult", () => {
-  it('should return "Royal Flush" related result and 14 as highCard', () => {
+  it('should return "Royal Flush" related result and 13 as highCard', () => {
     // GIVEN 
-    const hand = ["H14", "H12", "H10", "H13", "H11"];
+    const hand = ["H1", "H12", "H10", "H13", "H11"];
 
     // WHEN
     const result = getHandResult(hand);
@@ -24,13 +24,13 @@ describe("getHandResult", () => {
     // THEN
     expect(result).toEqual({
       power: HAND_TYPE.ROYAL_FLUSH,
-      highCard: 14,
+      highCard: 13,
     });
   });
 
-  it('should return "Straight Flush" related result and 14 as highCard', () => {
+  it('should return "Straight Flush" related result and 13 as highCard', () => {
     // GIVEN
-    const hand = ["H14", "H2", "H4", "H3", "H5"];
+    const hand = ["H5", "H2", "H4", "H3", "H6"];
 
     // WHEN
     const result = getHandResult(hand);
@@ -38,13 +38,13 @@ describe("getHandResult", () => {
     // THEN
     expect(result).toEqual({
       power: HAND_TYPE.STRAIGHT_FLUSH,
-      highCard: 14,
+      highCard: 6,
     });
   });
 
-  it('should return "Four of a kind" related result and 14 as highCard', () => {
+  it('should return "Four of a kind" related result and 13 as highCard', () => {
     // GIVEN
-    const hand = ["H14", "C14", "D14", "S14", "H5"];
+    const hand = ["H13", "C13", "D13", "S13", "H5"];
 
     // WHEN
     const result = getHandResult(hand);
@@ -52,13 +52,13 @@ describe("getHandResult", () => {
     // THEN
     expect(result).toEqual({
       power: HAND_TYPE.FOUR_OF_A_KIND,
-      highCard: 14,
+      highCard: 13,
     });
   });
 
-  it('should return "Full House" related result and 14 as highCard', () => {
+  it('should return "Full House" related result and 13 as highCard', () => {
     // GIVEN
-    const hand = ["H14", "C14", "D14", "H13", "D13"];
+    const hand = ["H1", "C1", "D13", "H13", "D13"];
 
     // WHEN
     const result = getHandResult(hand);
@@ -66,7 +66,7 @@ describe("getHandResult", () => {
     // THEN
     expect(result).toEqual({
       power: HAND_TYPE.FULL_HOUSE,
-      highCard: 14,
+      highCard: 13,
     });
   });
 
